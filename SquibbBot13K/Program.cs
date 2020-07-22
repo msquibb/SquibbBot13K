@@ -6,79 +6,93 @@ using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
 using SquibbBot13K.Services;
 using System;
+using System.IO;
 using System.Net.NetworkInformation;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SquibbBot13K
 {
-	class Program
-	{
-		private DiscordSocketClient _client;
-		private readonly IConfiguration _config;
+    class Program
+    {
+        //private DiscordSocketClient _client;
+        //private readonly IConfiguration _config;
+        //private readonly string _environment;
 
-		public Program()
-		{
-			var _builder = new ConfigurationBuilder()
-					.SetBasePath(AppContext.BaseDirectory)
-					.AddJsonFile(path: "config.json");
+        public Program()
+        {
+            //var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? string.Empty;
+            //_environment = environmentName;
 
-			_config = _builder.Build();
-		}
+            //var _builder = new ConfigurationBuilder()
+            //        .SetBasePath(AppContext.BaseDirectory)
+            //        .AddJsonFile($"appsettings.{environmentName}.json", optional: false, reloadOnChange: true)
+            //        .AddUserSecrets("0522ca63-cbdc-4658-922d-14d332b29535")
+            //        .AddEnvironmentVariables();
 
-		static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
+
+            //_config = _builder.Build();
+                       
+        }
+
+        static void Main(string[] args)
+        {
+            new SquibbBot13K().StartAsync().GetAwaiter().GetResult();
+            //new Program().MainAsync().GetAwaiter().GetResult();
+        }
 
 
-		public async Task MainAsync()
-		{
+        //public async Task MainAsync()
+        //{
 
-			using (var services = ConfigureServices())
-			{
-				var client = services.GetRequiredService<DiscordSocketClient>();
-				_client = client;
+        //    using (var services = ConfigureServices())
+        //    {
+        //        var client = services.GetRequiredService<DiscordSocketClient>();                
+        //        var secureSettings = _config.GetSection(nameof(SquibbBot13KSecrets)).Get<SquibbBot13KSecrets>();
+                
+        //        _client = client;
 
-				_client.Log += LogAsync;
-				_client.Ready += ReadyAsync;
-				services.GetRequiredService<CommandService>().Log += LogAsync;
+        //        _client.Log += LogAsync;
+        //        _client.Ready += ReadyAsync;
+        //        services.GetRequiredService<CommandService>().Log += LogAsync;
 
-				var token = _config["Token"];					
-				// Some alternative options would be to keep your token in an Environment Variable or a standalone file.
-				// var token = Environment.GetEnvironmentVariable("NameOfYourEnvironmentVariable");
-				// var token = File.ReadAllText("token.txt");
-				// var token = JsonConvert.DeserializeObject<AConfigurationClass>(File.ReadAllText("config.json")).Token;
+        //        string token = string.Empty;
+                
+        //        token = secureSettings.Token;
 
-				await _client.LoginAsync(TokenType.Bot, token);
-				await _client.StartAsync();
 
-				await services.GetRequiredService<CommandHandler>().InitializeAsync();
+        //        await _client.LoginAsync(TokenType.Bot, token);
+        //        await _client.StartAsync();
 
-				await Task.Delay(Timeout.Infinite);
-			}
-		}
+        //        await services.GetRequiredService<CommandHandler>().InitializeAsync();
 
-		private Task ReadyAsync()
-		{
-			Console.WriteLine($"Connected as -> [{_client.CurrentUser}] :)");
-			return Task.CompletedTask;
-		}
+        //        await Task.Delay(Timeout.Infinite);
+        //    }
+        //}
 
-		private Task LogAsync(LogMessage msg)
-		{
-			Console.WriteLine(msg.ToString());
-			return Task.CompletedTask;
-		}
+        //private Task ReadyAsync()
+        //{
+        //    Console.WriteLine($"Connected as -> [{_client.CurrentUser}] :)");
+        //    return Task.CompletedTask;
+        //}
 
-		private ServiceProvider ConfigureServices()
-		{
-			var services = new ServiceCollection();
-			services.AddSingleton(_config);
-			services.AddSingleton<DiscordSocketClient>();
-			services.AddSingleton<CommandService>();
-			services.AddSingleton<CommandHandler>();
-			services.AddSingleton<LoggingService>();
+        //private Task LogAsync(LogMessage msg)
+        //{
+        //    Console.WriteLine(msg.ToString());
+        //    return Task.CompletedTask;
+        //}
 
-			return services.BuildServiceProvider();
-		}
+        //private ServiceProvider ConfigureServices()
+        //{
+        //    var services = new ServiceCollection();
+        //    services.AddSingleton(_config);
+        //    services.AddSingleton<DiscordSocketClient>();
+        //    services.AddSingleton<CommandService>();
+        //    services.AddSingleton<CommandHandler>();
+        //    services.AddSingleton<LoggingService>();
 
-	}
+        //    return services.BuildServiceProvider();
+        //}
+
+    }
 }
