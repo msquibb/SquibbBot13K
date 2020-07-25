@@ -41,6 +41,7 @@ namespace SquibbBot13K.Services
             await _discord.LoginAsync(TokenType.Bot, discordToken);
             await _discord.StartAsync();
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
+            await _discord.SetGameAsync("Alex is a butt", null, ActivityType.Playing);
         }
     }
 }
