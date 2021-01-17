@@ -1,5 +1,5 @@
-﻿using Discord;
-using Discord.Commands;
+﻿//using Discord;
+//using Discord.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 namespace SquibbBot13K.Modules
 {
 	//[Group("announce")]
-	public class Announcement : ModuleBase
+	public class Announcement //: ModuleBase
 	{
 
-		[Command("ping")]
-		[Alias("pong", "hello")]
+		//[Command("ping")]
+		//[Alias("pong", "hello")]
 		public async Task PingAsync()
 		{
-			await ReplyAsync("polo!");
-			//return Task.CompletedTask;
-		}
+            //await ReplyAsync("polo!");
+            //return Task.CompletedTask;
+        }
 		
 
 		//[Command("say")]

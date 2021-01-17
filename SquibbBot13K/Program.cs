@@ -1,6 +1,6 @@
-﻿using Discord;
-using Discord.Commands;
-using Discord.WebSocket;
+﻿//using Discord;
+//using Discord.Commands;
+//using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +37,8 @@ namespace SquibbBot13K
 
         static void Main(string[] args)
         {
+            var prog = new Program();
+            
             new SquibbBot13K().StartAsync().GetAwaiter().GetResult();
             //new Program().MainAsync().GetAwaiter().GetResult();
         }

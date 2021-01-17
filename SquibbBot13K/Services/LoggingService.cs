@@ -1,6 +1,6 @@
-﻿using Discord;
-using Discord.Commands;
-using Discord.WebSocket;
+﻿//using Discord;
+//using Discord.Commands;
+//using Discord.WebSocket;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,25 +11,26 @@ namespace SquibbBot13K.Services
 {
 	public class LoggingService
 	{
-		public LoggingService(DiscordSocketClient client, CommandService command)
+		//public LoggingService(DiscordSocketClient client, CommandService command)
+		public LoggingService()
 		{
-			client.Log += LogAsync;
+			//client.Log += LogAsync;
 		}
 
-		private Task LogAsync(LogMessage message)
-		{
-			if (message.Exception is CommandException cmdException)
-			{
-				Console.WriteLine($"[Command/{message.Severity}] {cmdException.Command.Aliases.First()}"
-					+ $" failed to execute in {cmdException.Context.Channel}.");
-				Console.WriteLine(cmdException);
-			}
-			else
-			{
-				Console.WriteLine($"[General/{message.Severity}] {message}");
-			}
+		//private Task LogAsync(LogMessage message)
+		//{
+		//	if (message.Exception is CommandException cmdException)
+		//	{
+		//		Console.WriteLine($"[Command/{message.Severity}] {cmdException.Command.Aliases.First()}"
+		//			+ $" failed to execute in {cmdException.Context.Channel}.");
+		//		Console.WriteLine(cmdException);
+		//	}
+		//	else
+		//	{
+		//		Console.WriteLine($"[General/{message.Severity}] {message}");
+		//	}
 
-			return Task.CompletedTask;
-		}
+		//	return Task.CompletedTask;
+		//}
 	}
 }

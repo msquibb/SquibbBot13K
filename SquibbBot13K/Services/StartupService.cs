@@ -1,6 +1,6 @@
-﻿using Discord;
-using Discord.Commands;
-using Discord.WebSocket;
+﻿//using Discord;
+//using Discord.Commands;
+//using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,8 +14,8 @@ namespace SquibbBot13K.Services
 {
     public class StartupService
     {
-        private readonly DiscordShardedClient _discord;
-        private readonly CommandService _commands;
+        //private readonly DiscordShardedClient _discord;
+        //private readonly CommandService _commands;
         private readonly IConfigurationRoot _config;
         private readonly IServiceProvider _services;
         private readonly SquibbBot13KSecrets _secrets;
@@ -24,8 +24,8 @@ namespace SquibbBot13K.Services
         {
             _services = services;
             _config = _services.GetRequiredService<IConfigurationRoot>();
-            _discord = _services.GetRequiredService<DiscordShardedClient>();
-            _commands = _services.GetRequiredService<CommandService>();
+            //_discord = _services.GetRequiredService<DiscordShardedClient>();
+            //_commands = _services.GetRequiredService<CommandService>();
             _secrets = _services.GetRequiredService<SquibbBot13KSecrets>();
         }
 
@@ -38,10 +38,10 @@ namespace SquibbBot13K.Services
                 throw new Exception("Token missing from config.json! Please enter your token there (root directory)");
             }
 
-            await _discord.LoginAsync(TokenType.Bot, discordToken);
-            await _discord.StartAsync();
-            await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
-            await _discord.SetGameAsync("Alex is a butt", null, ActivityType.Playing);
+            //await _discord.LoginAsync(TokenType.Bot, discordToken);
+            //await _discord.StartAsync();
+            //await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
+            //await _discord.SetGameAsync("Alex is a butt", null, ActivityType.Playing);
         }
     }
 }
