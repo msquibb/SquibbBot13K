@@ -14,12 +14,12 @@ namespace SquibbBot13K.Modules
 		//[Command("feline")]
 		//[Alias("tina")]
 		[Command("cat")]
-		[Aliases("")]
+		[Aliases("Tina")]
 		public async Task HasBeenFed(CommandContext ctx)
 		{
 			var PetName = "Tina";
-			await ctx.RespondAsync($"{PetName} has been fed. Don't fall for her bullshit!");
-						//await ReplyAsync($"@Here {PetName} has been fed. Don't fall for her bullshit!");
+			//await ctx.RespondAsync($"{PetName} has been fed. Don't fall for her bullshit!");
+			await ctx.RespondAsync($"@Here {PetName} has been fed. Don't fall for her bullshit!");
 		}
 	}
 }
