@@ -4,6 +4,7 @@
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.EventArgs;
+using DSharpPlus.Interactivity.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Http;
@@ -50,6 +51,12 @@ namespace SquibbBot13K
 
 			//commands.RegisterCommands<Modules.Feline>();
 			commands.RegisterCommands(Assembly.GetExecutingAssembly());
+
+			_discord.UseInteractivity(new DSharpPlus.Interactivity.InteractivityConfiguration
+			{
+				PollBehaviour = DSharpPlus.Interactivity.Enums.PollBehaviour.KeepEmojis,
+				Timeout = TimeSpan.FromSeconds(30)
+			});
 
 			await _discord.ConnectAsync();
 			
