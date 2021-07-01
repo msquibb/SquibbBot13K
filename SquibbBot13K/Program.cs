@@ -99,7 +99,8 @@ namespace SquibbBot13K
 			services.AddSingleton(new DiscordClient(new DiscordConfiguration()
 			{
 				Token = config["SquibbBot13KSecrets:Token"],
-				TokenType = TokenType.Bot
+				TokenType = TokenType.Bot,
+				Intents = DiscordIntents.All
 			}));
 		}
 

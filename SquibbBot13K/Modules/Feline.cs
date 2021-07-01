@@ -1,4 +1,5 @@
 ﻿//using Discord.Commands;
+using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
@@ -17,12 +18,17 @@ namespace SquibbBot13K.Modules
 		//[Alias("tina")]
 		[Command("cat")]
 		[Aliases("Tina")]
+		[RequireBotPermissions(Permissions.MentionEveryone)]
 		public async Task HasBeenFed(CommandContext ctx)
 		{
 			var PetName = "Tina";
+			var everyone = ctx.Guild.EveryoneRole;
+			//var everyone = ctx.Member;
+			//var role = ctx.Guild.Roles.First(w => w.Value.Name == "@everyone").Value;
 			//await ctx.RespondAsync($"{PetName} has been fed. Don't fall for her bullshit!");
-			var message = await new DiscordMessageBuilder()
-				.WithContent($"{PetName} has been fed. Don't fall for her bullshit!")
+			var message = await new DiscordMessageBuilder()		
+				.WithContent($"@everyone - {PetName} has been fed. Don't fall for her bullshit!")
+				.WithAllowedMentions(new IMention[] { RoleMention.All, EveryoneMention.All })
 				.SendAsync(ctx.Channel);
 			//await ctx.RespondAsync($" {PetName} has been fed. Don't fall for her bullshit!");
 		}
