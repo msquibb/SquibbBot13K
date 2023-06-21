@@ -87,15 +87,6 @@ namespace SquibbBot13K
 			//.AddSingleton<Modules.Feline>()
 			.AddSingleton<LoggingService>();
 
-			//var discord = new DiscordClient(new DiscordConfiguration()
-			//{
-			//	Token = config["SquibbBot13KSecrets:Token"],
-			//	TokenType = TokenType.Bot
-			//});
-
-
-			//services.AddSingleton(discord);
-
 			services.AddSingleton(new DiscordClient(new DiscordConfiguration()
 			{
 				Token = config["SquibbBot13KSecrets:Token"],
@@ -103,59 +94,6 @@ namespace SquibbBot13K
 				Intents = DiscordIntents.All
 			}));
 		}
-
-
-		//public async Task MainAsync()
-		//{
-
-		//    using (var services = ConfigureServices())
-		//    {
-		//        var client = services.GetRequiredService<DiscordSocketClient>();                
-		//        var secureSettings = _config.GetSection(nameof(SquibbBot13KSecrets)).Get<SquibbBot13KSecrets>();
-
-		//        _client = client;
-
-		//        _client.Log += LogAsync;
-		//        _client.Ready += ReadyAsync;
-		//        services.GetRequiredService<CommandService>().Log += LogAsync;
-
-		//        string token = string.Empty;
-
-		//        token = secureSettings.Token;
-
-
-		//        await _client.LoginAsync(TokenType.Bot, token);
-		//        await _client.StartAsync();
-
-		//        await services.GetRequiredService<CommandHandler>().InitializeAsync();
-
-		//        await Task.Delay(Timeout.Infinite);
-		//    }
-		//}
-
-		//private Task ReadyAsync()
-		//{
-		//    Console.WriteLine($"Connected as -> [{_client.CurrentUser}] :)");
-		//    return Task.CompletedTask;
-		//}
-
-		//private Task LogAsync(LogMessage msg)
-		//{
-		//    Console.WriteLine(msg.ToString());
-		//    return Task.CompletedTask;
-		//}
-
-		//private ServiceProvider ConfigureServices()
-		//{
-		//    var services = new ServiceCollection();
-		//    services.AddSingleton(_config);
-		//    services.AddSingleton<DiscordSocketClient>();
-		//    services.AddSingleton<CommandService>();
-		//    services.AddSingleton<CommandHandler>();
-		//    services.AddSingleton<LoggingService>();
-
-		//    return services.BuildServiceProvider();
-		//}
 
 	}
 }
