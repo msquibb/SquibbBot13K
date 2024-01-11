@@ -38,6 +38,10 @@ public class Discord : BackgroundService
         _discordClient.GuildDownloadCompleted += async (sender, e) =>
         {
             _logger.LogInformation($"Guild Download Completed: {e.Guilds.Count} guilds");
+            e.Guilds.Values.ToList().ForEach(async guild =>
+            {
+                await guild.GetDefaultChannel().SendMessageAsync("SquibbBot13K is online!");
+            });
         };
         
     }
