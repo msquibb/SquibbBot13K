@@ -1,5 +1,6 @@
 ﻿@page "/weather"
 @attribute [StreamRendering]
+@inject SquibbBot13K.Blazor.Services.IBotEventService BotEventService
 
 <PageTitle>Weather</PageTitle>
 
@@ -36,8 +37,17 @@ else
     </table>
 }
 
+<div>
+    <button class="btn btn-danger" @onclick="TriggerEmergency">Emergency!</button>
+</div>
+
 @code {
-    private WeatherForecast[]? forecasts;
+   private WeatherForecast[]? forecasts;
+
+   private void TriggerEmergency()
+   {
+      BotEventService.InvokeEvent();
+   }
 
     protected override async Task OnInitializedAsync()
     {

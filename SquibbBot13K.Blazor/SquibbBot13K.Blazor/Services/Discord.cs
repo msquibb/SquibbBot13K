@@ -9,8 +9,10 @@ public class Discord : BackgroundService
 {
     private readonly Models.Options.Discord _discordOptions;
     private readonly ILogger<Discord> _logger;
-    private readonly ILoggerFactory _loggerFactory;
+    //private readonly ILoggerFactory _loggerFactory;
     private readonly IServiceProvider _serviceProvider;
+    private readonly IBotEventService _botEventService;
+
 
     private readonly DiscordClient _discordClient;
 
@@ -18,19 +20,22 @@ public class Discord : BackgroundService
         ILogger<Discord> logger,
         ILoggerFactory loggerFactory,
         IServiceProvider serviceProvider,
-        IOptions<Models.Options.Discord> discordOptions)
+        IOptions<Models.Options.Discord> discordOptions,
+        IBotEventService botEventService)
     {
         _logger = logger;
-        _loggerFactory = loggerFactory;
+        //_loggerFactory = loggerFactory;
         _serviceProvider = serviceProvider;
         _discordOptions = discordOptions.Value;
+        _botEventService = botEventService;
 
         _discordClient = new DiscordClient(new DiscordConfiguration()
         {
             Token = _discordOptions.Token,
             TokenType = TokenType.Bot,
             Intents = DiscordIntents.AllUnprivileged,
-            LoggerFactory = _loggerFactory
+            LoggerFactory = loggerFactory
+            //LoggerFactory = _loggerFactory
         });
 
         _serviceProvider = serviceProvider;
@@ -43,7 +48,15 @@ public class Discord : BackgroundService
                 await guild.GetDefaultChannel().SendMessageAsync("SquibbBot13K is online!");
             });
         };
-        
+
+        _botEventService.SnowEmergencyChange += async (level, county) =>
+        {
+            _logger.LogInformation($"Snow Emergency Change Event: {level} {county}");
+            foreach (var guild in _discordClient.Guilds)
+            {
+                await guild.Value.GetDefaultChannel().SendMessageAsync($"Snow Emergency Level {level} in {county.ToString()} county.");
+            }
+        };
     }
 
 
