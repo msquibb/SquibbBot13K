@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "SquibbBot13K.Discord.Bot": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
