@@ -17,8 +17,9 @@ Log.Logger = new LoggerConfiguration()
      .CreateLogger();
 
 builder.Services.Configure<SquibbBot13K.Blazor.Models.Options.Discord>(builder.Configuration.GetSection("Discord"));
-builder.Services.AddHostedService<SquibbBot13K.Blazor.Services.Discord>();
 builder.Services.AddSingleton<SquibbBot13K.Blazor.Services.IBotEventService, SquibbBot13K.Blazor.Services.BotEventService>();
+builder.Services.AddHostedService<SquibbBot13K.Blazor.Services.Discord>();
+builder.Services.AddHostedService<SquibbBot13K.Blazor.Services.SnowmergencyScannerService>();
 
 var app = builder.Build();
 
