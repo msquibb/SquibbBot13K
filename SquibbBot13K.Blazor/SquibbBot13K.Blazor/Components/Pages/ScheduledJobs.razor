@@ -1,0 +1,49 @@
+﻿@page "/configuration"
+@rendermode InteractiveServer
+
+<h3>Job Configuration</h3>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-2">
+			<button @onclick="() => showConfig = !showConfig" class="btn btn-primary" type="button">
+				?
+			</button>
+		</div>
+		<div class="col-6">
+			<span>Snowmergency</span>
+		</div>
+		<InputRadioGroup @bind-Value="IsEnabled">
+			<div class="col-2">
+				<label>
+					Enabled:
+					<InputRadio Value="true" />
+				</label>
+			</div>
+			<div class="col-2">
+				<label>
+
+					Disabled:
+					<InputRadio Value="false" />
+				</label>
+			</div>
+		</InputRadioGroup>
+	</div>
+	@if (showConfig)
+	{
+	<div class="card">
+			<div class="card-header">
+				Periodically scans the Sherriff's website for snow emergencies and posts them to the channel.
+			</div>
+			<div class="card-body">
+				Config items go here
+			</div>
+		</div>		
+	}
+	
+</div>
+
+@code {
+	private bool IsEnabled { get; set; } = true;
+	private bool showConfig = false;
+}

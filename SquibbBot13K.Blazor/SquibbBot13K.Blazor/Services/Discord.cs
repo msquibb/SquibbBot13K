@@ -52,12 +52,15 @@ public class Discord : BackgroundService
       _botEventService.SnowEmergencyChange += _botEventService_SnowEmergencyChange;
    }
 
-   private void _botEventService_SnowEmergencyChange(object sender, SnowEmergencyChangeEventArgs args)
+   private async void _botEventService_SnowEmergencyChange(object sender, SnowEmergencyChangeEventArgs args)
    {
       _logger.LogInformation($"Snow Emergency Change Event: {sender} {args}");
       foreach (var guild in _discordClient.Guilds)
       {
-         guild.Value.GetDefaultChannel().SendMessageAsync($"Snow Emergency Level {args.CurrentEmergencyLevel} in {args.AffectedCounty.ToString()} county.").GetAwaiter().GetResult();
+         string msg = args.CurrentEmergencyLevel > 0 
+            ? $"Snow Emergency Level {args.CurrentEmergencyLevel} in {args.AffectedCounty.ToString()} county." 
+            : $"No current snow emergency detected in {args.AffectedCounty.ToString()} county";
+         await guild.Value.GetDefaultChannel().SendMessageAsync(msg);
       }
    }
 

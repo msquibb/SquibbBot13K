@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquibbBot13K", "SquibbBot13
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquibbBot13K.Discord.Bot", "SquibbBot13K.Discord.Bot\SquibbBot13K.Discord.Bot.csproj", "{F83E652F-0329-42AE-B09D-BEA5C020635D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquibbBot13K.Blazor", "SquibbBot13K.Blazor\SquibbBot13K.Blazor\SquibbBot13K.Blazor.csproj", "{3C546B8C-28EA-4D90-B84E-22B95C4A5678}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquibbBot13K.Blazor", "SquibbBot13K.Blazor\SquibbBot13K.Blazor\SquibbBot13K.Blazor.csproj", "{3C546B8C-28EA-4D90-B84E-22B95C4A5678}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquibbBot13K.Blazor.Client", "SquibbBot13K.Blazor\SquibbBot13K.Blazor.Client\SquibbBot13K.Blazor.Client.csproj", "{7E2C85F7-5C64-485B-942C-EA18C7ED060E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquibbBot13K.Blazor.Client", "SquibbBot13K.Blazor\SquibbBot13K.Blazor.Client\SquibbBot13K.Blazor.Client.csproj", "{7E2C85F7-5C64-485B-942C-EA18C7ED060E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
